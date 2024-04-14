@@ -1,0 +1,30 @@
+:concurrency: 4
+:verbose: false
+# https://github.com/mperham/sidekiq/wiki/Advanced-Options#queues
+# Quote:
+#   I don't recommend having more than a handful of queues. Lots of queues makes for a more complex
+#   system and Sidekiq Pro cannot reliably handle multiple queues without polling. M Sidekiq Pro
+#   processes polling N queues means O(M*N) operations per second slamming Redis.
+# NOTE:
+#   default
+#     - this queue if for general jobs that are niegther long runing, bulk or must finish.
+#     - these jobs are just the usual single email sending or single process
+#   must_finish
+#     - this queue contians all the jobs that should finish. currently all uploaders
+#     - this will hinder deployment when there is a job running
+#   low_long_running
+#     - this queue are for jobs that takes so much time but are non critical
+#     - this jobs can be rerun without any problem and would take alot of time to finish
+#   bulk
+#     - these are jobs that are add in bulks.
+#     - we created this queue or jobs created by importers that can pile up to thousands.
+:queues:
+  - default
+development:
+  :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 5 %> 
+test:
+  :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 5 %> 
+staging:
+  :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 5 %> 
+production:
+  :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 10 %> 
