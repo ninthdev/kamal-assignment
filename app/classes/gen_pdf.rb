@@ -9,7 +9,7 @@ class GenPdf < SimpleDelegator
       render_to_string(
         template: 'home/index',
         layout: 'application',
-        formats: [:pdf]
+        formats: [:html]
       )
     )
   end

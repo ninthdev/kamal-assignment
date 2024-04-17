@@ -13,7 +13,7 @@ RSpec.describe GenPdf do
       expect(helper).to have_received(:render_to_string).with(
         template: 'home/index',
         layout: 'application',
-        formats: [:pdf]
+        formats: [:html]
       )
       expect(helper).to have_received(:pdf_from_string).with("PDF content")
       expect(pdf).to eq("Generated PDF")

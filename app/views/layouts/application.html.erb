@@ -3,15 +3,17 @@
   <head>
     <title>Rails Doctrine</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <%= csrf_meta_tags  rescue false %>
+    <%= csp_meta_tag rescue false %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= wicked_pdf_stylesheet_link_tag "pdf" %>
+
   </head>
 
   <body>
-    <%= render 'navbar' %>
+    <%= render 'application/navbar' %>
     <div class="layout">
       <%= yield %>
     </div>

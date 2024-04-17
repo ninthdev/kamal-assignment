@@ -9,10 +9,12 @@
           <dt>David Heinemeier Hansson</dt>
         </dl>
       </div>
-      <div class="button-container">
-        <%= button_to "PDF", home_index_path(format: :pdf), :method => "get", class: "my_button", form: { target: "_blank" } %>
-        <%= button_to "Email PDF", :email_pdfs, :method => "get", class: "my_button" %>
-      </div>
+      <% unless(request.format.to_s.include?("pdf") rescue true) %>
+        <div class="button-container">
+          <%= button_to "PDF", home_index_path(format: :pdf), :method => "get", class: "my_button", form: { target: "_blank" } %>
+          <%= button_to "Email PDF", :email_pdfs, :method => "get", class: "my_button" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,9 +1,10 @@
-<% flash.each do |type, message| %>
-  <div class="flash-message <%= type %>">
-    <%= message %>
-  </div>
+<% if request && request&.flash %>
+  <% flash.each do |type, message| %>
+    <div class="flash-message <%= type %>">
+      <%= message %>
+    </div>
+  <% end %>
 <% end %>
-
-<nav class="nav">
-  <a class="nav__logo" href="/" aria-label="Ruby on Rails"></a>
-</nav>
+  <nav class="nav">
+    <a class="nav__logo" href="/" aria-label="Ruby on Rails"></a>
+  </nav>
